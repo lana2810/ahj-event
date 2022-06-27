@@ -1,0 +1,59 @@
+:root {
+  --cell-size: 120px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: burlywood;
+}
+
+.board-container,
+#container {
+  padding: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.header {
+  text-align: center;
+}
+.btn {
+  font-weight: 400;
+  background-color: #d5afa1;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border: 1px solid;
+}
+#board {
+  cursor: url("../img/hammer.png"), auto;
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+}
+.cell {
+  position: relative;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid;
+}
+
+.character {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  position: absolute;
+  z-index: 99;
+}
