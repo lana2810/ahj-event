@@ -21,7 +21,11 @@ body {
   flex-wrap: wrap;
 }
 .header {
-  text-align: center;
+  width: 65%;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .btn {
   font-weight: 400;

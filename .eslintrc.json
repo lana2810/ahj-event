@@ -10,6 +10,9 @@
     "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
     "allowTernary": "off",
     "no-plusplus": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off",
+    "comma-dangle": ["error", "never"]
   }
 }

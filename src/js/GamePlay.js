@@ -9,11 +9,11 @@ export default class GamePlay {
     this.interval = null;
     this.indexGoblin = null;
     this.pointsGoblin = 0;
+    this.pointsPlayer = 0;
   }
 
   init() {
     this.drawField();
-    this.boardEl.addEventListener("click", (event) => this.onCellClick(event));
     document
       .querySelector(".btn")
       .addEventListener("click", (event) => this.onNewGameClick(event));
@@ -34,8 +34,10 @@ export default class GamePlay {
   }
 
   newGame() {
+    this.boardEl.addEventListener("click", this.onCellClick.bind(this));
     this.interval = null;
     this.pointsGoblin = 0;
+    this.pointsPlayer = 0;
     const goblin = document.createElement("img");
     goblin.src = imgsrc;
     goblin.classList.add("character");
@@ -47,16 +49,31 @@ export default class GamePlay {
 
   onCellClick(event) {
     event.preventDefault();
+    const pointsPlayerEl = document.getElementById("pointsPlayer");
+    const pointsGoblinEl = document.getElementById("pointsGoblin");
     const { target } = event;
     const cellClick = target.closest(".cell");
-    if (this.cells.indexOf(cellClick) !== this.indexGoblin) {
+    if (this.cells.indexOf(cellClick) === this.indexGoblin) {
+      this.pointsPlayer++;
+      pointsPlayerEl.textContent = `Игрок - ${this.pointsPlayer}`;
+    } else {
       this.pointsGoblin++;
+      pointsGoblinEl.textContent = `Гоблин - ${this.pointsGoblin}`;
     }
     if (this.pointsGoblin === 5) {
+      pointsPlayerEl.textContent = "";
+      pointsGoblinEl.textContent = "";
+      this.gameOver();
+    }
+  }
+
+  gameOver() {
+    this.boardEl.removeEventListener("click", this.onCellClick);
+    setTimeout(() => {
       clearInterval(this.interval);
+      alert("Game over");
       this.boardEl.innerHTML = "";
       this.drawField();
-      alert("Game over");
-    }
+    }, 100);
   }
 }
